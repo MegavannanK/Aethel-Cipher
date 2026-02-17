@@ -1,281 +1,155 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius: var(--radius);
+}
+
 @layer base {
   :root {
-    --space-black: #030014;
-    --space-deep: #0a0a2e;
-    --neon-blue: #00d4ff;
-    --neon-purple: #a855f7;
-    --neon-pink: #ec4899;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
   }
 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    @apply border-border;
   }
 
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: #e2e8f0;
-    background: var(--space-black);
-    overflow-x: hidden;
-  }
-
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--space-black);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(0, 212, 255, 0.4), rgba(168, 85, 247, 0.4));
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, rgba(0, 212, 255, 0.7), rgba(168, 85, 247, 0.7));
+    @apply bg-background text-foreground;
+    /* Using HSL variables directly requires hsl() or similar unless configured in theme. 
+       Wait, Tailwind 4 automatically picks up variables if configured correctly, 
+       but standard practice is to use hsl(var(--variable)) in tailwind configuration 
+       or just use CSS variables directly. Let's assume standard Utility usage requires definition. */
   }
 }
 
-@layer components {
+/* 
+  Custom Theme Configuration via CSS Variables for Tailwind v4 
+  This maps the semantic tokens to Tailwind classes.
+*/
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --radius: var(--radius);
+}
 
-  /* ─────────────────── Glass Card ─────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Glassmorphism Utilities */
+  .glass-panel {
+    @apply bg-background/60 backdrop-blur-lg border border-white/10 dark:border-white/5 shadow-sm;
+  }
+
   .glass-card {
-    background: rgba(10, 10, 46, 0.5);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(168, 85, 247, 0.12);
-    border-radius: 16px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+    @apply bg-card/50 backdrop-blur-md border border-border shadow-sm hover:shadow-md transition-all duration-300;
   }
 
-  .glass-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    padding: 1px;
-    background: linear-gradient(135deg, transparent 40%, rgba(0, 212, 255, 0.1), transparent 60%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s;
+  /* Subtle Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70;
   }
 
-  .glass-card:hover {
-    border-color: rgba(0, 212, 255, 0.25);
-    box-shadow:
-      0 0 30px rgba(0, 212, 255, 0.08),
-      0 0 60px rgba(168, 85, 247, 0.04),
-      inset 0 0 30px rgba(0, 212, 255, 0.03);
-    transform: translateY(-2px);
+  .gradient-text-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70;
   }
 
-  .glass-card:hover::before {
-    opacity: 1;
+  /* Instant Slide Down Animation */
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
-  /* ─────────────────── Neon Text ─────────────────── */
-  .neon-text {
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradient-shift 4s ease infinite;
-    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3));
-  }
-
-  /* ─────────────────── Buttons ─────────────────── */
-  .btn-primary {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    color: white;
-    font-weight: 600;
-    padding: 14px 32px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-    font-size: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 0 30px rgba(0, 212, 255, 0.4),
-      0 0 60px rgba(168, 85, 247, 0.2),
-      0 5px 20px rgba(0, 0, 0, 0.3);
-  }
-
-  .btn-primary:hover::after {
-    transform: translateX(100%);
-  }
-
-  .btn-secondary {
-    display: inline-block;
-    background: transparent;
-    color: var(--neon-blue);
-    font-weight: 600;
-    padding: 14px 32px;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-    font-size: 16px;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(0, 212, 255, 0.08);
-    border-color: var(--neon-blue);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2), inset 0 0 20px rgba(0, 212, 255, 0.05);
-    transform: translateY(-2px);
-  }
-
-  /* ─────────────────── Form Input ─────────────────── */
-  .form-input {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 14px 16px;
-    border-radius: 12px;
-    color: white;
-    font-size: 14px;
-    outline: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .form-input::placeholder {
-    color: rgba(255, 255, 255, 0.2);
-  }
-
-  .form-input:focus {
-    border-color: rgba(0, 212, 255, 0.4);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08), 0 0 20px rgba(0, 212, 255, 0.05);
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  /* ─────────────────── Scan Lines Overlay ─────────────────── */
-  .scan-lines {
-    background: repeating-linear-gradient(0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.03) 2px,
-        rgba(0, 0, 0, 0.03) 4px);
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0.5;
-  }
-
-  /* ─────────────────── Hologram Shimmer ─────────────────── */
-  .hologram-shimmer {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hologram-shimmer::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg,
-        transparent 40%,
-        rgba(0, 212, 255, 0.04) 45%,
-        rgba(168, 85, 247, 0.04) 50%,
-        transparent 55%);
-    animation: hologram-sweep 6s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  /* ─────────────────── Grid Background ─────────────────── */
-  .grid-bg {
-    background-image:
-      linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-}
-
-/* ─────────────────── Animations ─────────────────── */
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes hologram-sweep {
-  0% {
-    transform: translateX(-30%) translateY(-30%) rotate(45deg);
-  }
-
-  50% {
-    transform: translateX(30%) translateY(30%) rotate(45deg);
-  }
-
-  100% {
-    transform: translateX(-30%) translateY(-30%) rotate(45deg);
-  }
-}
-
-@keyframes scan {
-  0% {
-    top: -2px;
-  }
-
-  100% {
-    top: 100%;
-  }
-}
-
-.animate-scan {
-  animation: scan 3s linear infinite;
-}
-
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    opacity: 0.3;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
-  }
-
-  50% {
-    opacity: 0.6;
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+  .navbar-slide-down {
+    animation: slideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 }
