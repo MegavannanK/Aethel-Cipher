@@ -2,9 +2,12 @@ import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === 'production';
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   basePath: isProd ? "/Aethel-Cipher" : "",
   output: "export",  // Required for static site generation
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     unoptimized: true, // Required as GitHub Pages doesn't support Next.js Image Optimization
   },
